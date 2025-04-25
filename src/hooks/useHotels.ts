@@ -18,7 +18,7 @@ export const useAddHotel = create<HotelState>((set) => ({
   onClose: () => set({ isOpen: false, id: undefined }),
 }));
 
-// Abrir formulario editar usuario
+// Abrir formulario editar hotel
 export const useEditHotel = create<HotelState>((set) => ({
   id: undefined,
   isOpen: false,

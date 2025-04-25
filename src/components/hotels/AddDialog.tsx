@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog"
 import { PlusCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { HotelForm } from "./HotelForm"
+import { HotelForm } from "./Form"
 import { useHotels } from "@/hooks/useHotels"
 import { hotelSchema } from "@/schemas/hotels"
 import { useState } from "react"

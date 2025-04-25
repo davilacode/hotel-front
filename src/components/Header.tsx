@@ -6,7 +6,7 @@ export default function Header() {
   const matchRoute = useMatchRoute();
   const hotelsParams = matchRoute({ to: '/hotels' });
 
-  const accomodationParams = matchRoute({ to: '/acommodation' });
+  const roomsParams = matchRoute({ to: '/rooms' });
 
   return (
     <header className="flex px-4 flex-row items-center justify-between bg-[#282c34] text-white text-[calc(10px+2vmin)]">
@@ -23,10 +23,10 @@ export default function Header() {
           </li>
           <li>
             <Link
-              to="/acommodation"
-              className={accomodationParams ? 'text-blue-500' : ''}
+              to="/rooms"
+              className={roomsParams ? 'text-blue-500' : ''}
             >
-              Acomodación
+              Habitaciones
             </Link>
           </li>
         </ul>

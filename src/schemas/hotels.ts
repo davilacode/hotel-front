@@ -2,6 +2,7 @@
 import { z } from 'zod';
 
 export const hotelSchema = z.object({
+  id: z.number().optional(),
   name: z.string().nonempty("El nombre es requerido"),
   address: z.string().nonempty("La dirección es requerida"),
   city: z.string().nonempty("La ciudad es requerida"),

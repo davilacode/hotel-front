@@ -1,8 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Tables from '@/components/hotels/Tables'
-import AddHotelDialog from '@/components/hotels/AddHotelDialog'
+import AddHotelDialog from '@/components/hotels/AddDialog'
 import { useHotels } from '@/hooks/useHotels'
-import EditHotelDialog from '@/components/hotels/EditHotelDialog'
+import EditHotelDialog from '@/components/hotels/EditDialog'
 
 export const Route = createFileRoute('/hotels/')({
   component: RouteComponent,

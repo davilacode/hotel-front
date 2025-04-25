@@ -4,7 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { HotelForm } from "./HotelForm"
+import { HotelForm } from "./Form"
 import { useEditHotel, useHotels } from "@/hooks/useHotels"
 import { hotelSchema } from "@/schemas/hotels"
 import type { z } from "zod"
@@ -22,11 +22,11 @@ export default function EditHotelDialog() {
 
   const defaultValues = hotelData
   ? {
-    name: hotelData.name,
-    address: hotelData.address,
-    nit: hotelData.nit,
-    city: hotelData.city,
-    total_rooms: hotelData.total_rooms,
+    name: hotelData.hotel.name,
+    address: hotelData.hotel.address,
+    nit: hotelData.hotel.nit,
+    city: hotelData.hotel.city,
+    total_rooms: hotelData.hotel.total_rooms,
   }
   : {
     name: "",
