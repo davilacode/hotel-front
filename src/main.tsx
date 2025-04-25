@@ -1,6 +1,8 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from "@/components/ui/sonner"
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
@@ -18,6 +20,9 @@ const router = createRouter({
   defaultPreloadStaleTime: 0,
 })
 
+// Create a QueryClient instance
+const queryClient = new QueryClient()
+
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
   interface Register {
@@ -31,7 +36,11 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        {/* Render the router */}
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </StrictMode>,
   )
 }
