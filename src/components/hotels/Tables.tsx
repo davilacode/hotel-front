@@ -28,7 +28,7 @@ export default function Table({ data }: Props) {
         <TableRow>
           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead>Hotel</TableHead>
-          <TableHead>Ubicacion</TableHead>
+          <TableHead>Ubicación</TableHead>
           <TableHead className="text-right">Acciones</TableHead>
         </TableRow>
       </TableHeader>

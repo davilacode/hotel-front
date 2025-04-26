@@ -20,11 +20,11 @@ export default function Table({ data }: Props) {
   
   return (
     <UITable className="w-full mx-auto">
-      <TableCaption>Listado de habitaciones.</TableCaption>
+      <TableCaption>Listado de acomodaciones.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Tipo</TableHead>
-          <TableHead>Acomodacion</TableHead>
+          <TableHead>Acomodación</TableHead>
           <TableHead>Cantidad</TableHead>
           <TableHead className="text-right">Acciones</TableHead>
         </TableRow>
@@ -32,8 +32,8 @@ export default function Table({ data }: Props) {
       <TableBody>
         {data?.map((room) => (
           <TableRow key={room.id}>
-            <TableCell>{room.type}</TableCell>
-            <TableCell>{room.accommodation}</TableCell>
+            <TableCell className="capitalize">{room.type}</TableCell>
+            <TableCell className="capitalize">{room.accommodation}</TableCell>
             <TableCell>{room.quantity}</TableCell>
             <TableCell className="text-right space-x-2">
               <Button variant="secondary" onClick={() => onOpenEdit(room.hotel_id, room.id)}>
@@ -50,7 +50,7 @@ export default function Table({ data }: Props) {
         {data?.length === 0 && (
           <TableRow>
             <TableCell colSpan={4} className="text-center">
-              No hay habitaciones disponibles.
+              No hay acomodaciones disponibles.
             </TableCell>
           </TableRow>
         )}

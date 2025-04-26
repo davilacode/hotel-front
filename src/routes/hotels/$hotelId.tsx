@@ -63,7 +63,7 @@ function RouteComponent() {
               <p>{hotelData?.hotel?.total_rooms || ''}</p>
             </div>
             <div>
-              <h2 className="font-bold">Total de acomodaciones credas:</h2>
+              <h2 className="font-bold">Total de acomodaciones creadas:</h2>
               <p>{hotelData?.total_rooms_created || ''}</p>
             </div>
           </div>

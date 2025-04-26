@@ -59,11 +59,11 @@ export const useRooms = (hotelId: number, id?: number) => {
       try {
         const { data } = await getRoom(hotelId, id);
         if (!data) {
-          throw new Error('No se recibieron datos de las habitaciones');
+          throw new Error('No se recibieron datos de las acomodaciones');
         }
         return data;
       } catch (error) {
-        console.error('Error al obtener datos de las habitaciones:', error);
+        console.error('Error al obtener datos de las acomodaciones:', error);
         throw error;
       }
     },

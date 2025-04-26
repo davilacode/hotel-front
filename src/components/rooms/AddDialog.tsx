@@ -33,10 +33,10 @@ export default function AddRoomDialog() {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Agregar habitaciones al hotel</DialogTitle>
+          <DialogTitle>Agregar acomodaciones al hotel</DialogTitle>
           {hotelData && <>
             <p className="font-bold">{hotelData.hotel.name}</p>
-            <p>Habitaciones totales: {hotelData.hotel.total_rooms}</p>
+            <p>acomodaciones totales: {hotelData.hotel.total_rooms}</p>
             <p>Restantes: {hotelData.hotel.total_rooms - hotelData.total_rooms_created}</p>
           </>}
         </DialogHeader>

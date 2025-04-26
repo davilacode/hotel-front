@@ -120,7 +120,7 @@ export const HotelForm = ({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor={field.name}>Nro de habitaciones</FormLabel>
+              <FormLabel htmlFor={field.name}>Nro de acomodaciones</FormLabel>
               <FormControl>
                 <Input
                   id={field.name}

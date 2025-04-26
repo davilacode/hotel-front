@@ -15,7 +15,7 @@ function App() {
           <Link to="/hotels">Administrar Hoteles</Link>
         </Button>
         <Button asChild variant="outline" size={"lg"}>
-          <Link to="/rooms">Administrar Habitaciones</Link>
+          <Link to="/rooms">Administrar Acomodaciones</Link>
         </Button>
       </div>
     </div>

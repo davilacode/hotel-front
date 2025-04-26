@@ -28,7 +28,7 @@ export default function Header() {
                 activeProps={{ className: 'text-primary bg-muted' }}
                 className='flex h-7 text-lg items-center justify-center rounded-full px-4 text-center font-medium text-muted-foreground transition-colors hover:text-primary'
               >
-                Habitaciones
+                Acomodaciones
               </Link>
             </li>
           </ul>

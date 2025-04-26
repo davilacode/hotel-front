@@ -71,7 +71,7 @@ function RouteComponent() {
           </Select>
           <Button variant="default" className="w-full md:w-auto" onClick={() => hotelId !== null && onOpen(hotelId) } >
             <PlusCircle />
-            <span>Registrar habitaciones</span>
+            <span>Agregar Acomodaciones</span>
           </Button>
         </div>
       </div>
