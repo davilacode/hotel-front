@@ -7,6 +7,7 @@ import EditRoomDialog from '@/components/rooms/EditDialog'
 import { Button } from '@/components/ui/button'
 import AddRoomDialog from '@/components/rooms/AddDialog'
 import { ArrowLeft, Edit, PlusCircle } from 'lucide-react'
+import { DeleteRoomsDialog } from '@/components/rooms/DeleteDialog'
 
 export const Route = createFileRoute('/hotels/$hotelId')({
   component: RouteComponent,
@@ -84,6 +85,7 @@ function RouteComponent() {
       <EditHotelDialog />
       <AddRoomDialog />
       <EditRoomDialog />
+      <DeleteRoomsDialog />
     </div>
   )
 }
