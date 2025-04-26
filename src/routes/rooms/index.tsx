@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useHotels } from '@/hooks/useHotels'
 import { PlusCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { DeleteRoomsDialog } from '@/components/rooms/DeleteDialog'
 
 export const Route = createFileRoute('/rooms/')({
   component: RouteComponent,
@@ -77,14 +78,13 @@ function RouteComponent() {
       {isRoomsLoading ? (
         <div>Cargando...</div> 
       ) : (
-        <Tables
-        data={roomsData || []}
-        />
+        <Tables data={roomsData || []} />
       )
     }
       
       <EdiRoomslDialog />
       <AddRoomsDialog />
+      <DeleteRoomsDialog />
     </div>
   )
 }

@@ -230,3 +230,8 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+main {
+  min-height: calc(100vh - 108px);
+  overflow: auto;
+}

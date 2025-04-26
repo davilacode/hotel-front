@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from 'sonner';
-import { createHotel, getHotel, getHotels, updateHotel } from "@/api/hotels";
+import { createHotel, getHotel, getHotels, updateHotel, deleteHotel } from "@/api/hotels";
 
 import { create } from 'zustand';
 
@@ -20,6 +20,14 @@ export const useAddHotel = create<HotelState>((set) => ({
 
 // Abrir formulario editar hotel
 export const useEditHotel = create<HotelState>((set) => ({
+  id: undefined,
+  isOpen: false,
+  onOpen: (id?: number) => set({ isOpen: true, id }),
+  onClose: () => set({ isOpen: false, id: undefined }),
+}));
+
+// Abrir validación para eliminar hotel
+export const useDeleteHotel = create<HotelState>((set) => ({
   id: undefined,
   isOpen: false,
   onOpen: (id?: number) => set({ isOpen: true, id }),
@@ -68,7 +76,8 @@ export const useHotels = (id?: number) => {
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Error al crear el Hotel');
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al crear Hotel: ' + errorMessage);
     },    
   });
 
@@ -85,7 +94,25 @@ export const useHotels = (id?: number) => {
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Error al actualizar el Hotel');
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al actualizar el Hotel: ' + errorMessage);
+    }
+  });
+
+  const deleteHotelMutation = useMutation({
+    mutationFn: async () => {
+      if (!id) throw new Error("Hotel ID is required");
+      const { data } = await deleteHotel(id);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success('Hotel eliminado correctamente');
+      queryClient.invalidateQueries({ queryKey: ['hotels'] });
+    },
+    onError: (error) => {
+      console.error(error);
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al eliminar Hotel: ' + errorMessage);
     }
   });
 
@@ -94,5 +121,6 @@ export const useHotels = (id?: number) => {
     getHotelQuery,
     createHotelMutation,
     updateHotelMutation,
+    deleteHotelMutation
   };
 }

@@ -1,0 +1,85 @@
+import { createFileRoute, Link } from '@tanstack/react-router'
+import Tables from '@/components/rooms/Tables'
+import { useEditHotel, useHotels } from '@/hooks/useHotels'
+import { useAddRooms, useRooms } from '@/hooks/useRooms'
+import EditHotelDialog from '@/components/hotels/EditDialog'
+import EditRoomDialog from '@/components/rooms/EditDialog'
+import { Button } from '@/components/ui/button'
+import AddRoomDialog from '@/components/rooms/AddDialog'
+
+export const Route = createFileRoute('/hotels/$hotelId')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  const { hotelId } = Route.useParams()
+
+  const { onOpen } = useEditHotel()
+  const { onOpen: onOpenRoom } = useAddRooms()
+  const { 
+    getHotelQuery: { data: hotelData, isLoading: isHotelLoading }
+  } = useHotels(Number(hotelId))
+  
+  const { 
+    getRoomsQuery: { data: roomsData, isLoading: isRoomsLoading }
+  } = useRooms(Number(hotelId))
+
+  return (
+    <div className='flex flex-col p-4 w-screen max-w-[1400px] mx-auto'>
+      {isHotelLoading ? (
+        <div>Cargando...</div>
+        ) : (
+        <>
+          <div className="flex flex-row border-b-2 mb-4 items-center justify-between gap-4 bg-white p-4 shadow-">
+            <div>
+              <h1 className="font-bold text-2xl">{hotelData?.hotel?.name || ''}</h1>
+            </div>
+            <div className='flex items-center gap-4'>
+              <Button variant="secondary">
+                <Link to="/hotels">
+                  Volver
+                </Link>
+              </Button>
+              <Button onClick={() => { onOpen(Number(hotelId)) } }>
+                Editar
+              </Button>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mb-4 bg-white shadow-lg rounded-md p-4">
+            <div>
+              <h2 className="font-bold">Dirección:</h2>
+              <p>{hotelData?.hotel?.address || ''}</p>
+            </div>
+            <div>
+              <h2 className="font-bold">NIT:</h2>
+              <p>{hotelData?.hotel?.nit || ''}</p>
+            </div>
+            <div>
+              <h2 className="font-bold">Capacidad:</h2>
+              <p>{hotelData?.hotel?.total_rooms || ''}</p>
+            </div>
+            <div>
+              <h2 className="font-bold">Total de acomodaciones credas:</h2>
+              <p>{hotelData?.total_rooms_created || ''}</p>
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className="flex flex-row items-center justify-end mb-4">
+        <Button onClick={() => { onOpenRoom(Number(hotelId)) } }>
+          Agregar acomodación
+        </Button>
+      </div>
+      {isRoomsLoading ? (
+        <div>Cargando...</div> 
+      ) : (
+        <Tables data={roomsData || []} />
+      )
+    }
+      <EditHotelDialog />
+      <AddRoomDialog />
+      <EditRoomDialog />
+    </div>
+  )
+}

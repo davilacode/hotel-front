@@ -3,6 +3,7 @@ import Tables from '@/components/hotels/Tables'
 import AddHotelDialog from '@/components/hotels/AddDialog'
 import { useHotels } from '@/hooks/useHotels'
 import EditHotelDialog from '@/components/hotels/EditDialog'
+import { DeleteHotelDialog } from '@/components/hotels/DeleteDialog'
 
 export const Route = createFileRoute('/hotels/')({
   component: RouteComponent,
@@ -27,12 +28,11 @@ function RouteComponent() {
       {isLoading ? (
         <div>Cargando...</div> 
         ) : (
-          <Tables
-            data={data || []}
-          />
+          <Tables data={data || []} />
         )
       }
       <EditHotelDialog />
+      <DeleteHotelDialog />
     </div>
   )
 }

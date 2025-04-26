@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as RoomsIndexImport } from './routes/rooms/index'
 import { Route as HotelsIndexImport } from './routes/hotels/index'
+import { Route as HotelsHotelIdImport } from './routes/hotels/$hotelId'
 
 // Create/Update Routes
 
@@ -35,6 +36,12 @@ const HotelsIndexRoute = HotelsIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const HotelsHotelIdRoute = HotelsHotelIdImport.update({
+  id: '/hotels/$hotelId',
+  path: '/hotels/$hotelId',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -44,6 +51,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/hotels/$hotelId': {
+      id: '/hotels/$hotelId'
+      path: '/hotels/$hotelId'
+      fullPath: '/hotels/$hotelId'
+      preLoaderRoute: typeof HotelsHotelIdImport
       parentRoute: typeof rootRoute
     }
     '/hotels/': {
@@ -67,12 +81,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
   '/hotels': typeof HotelsIndexRoute
   '/rooms': typeof RoomsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
   '/hotels': typeof HotelsIndexRoute
   '/rooms': typeof RoomsIndexRoute
 }
@@ -80,27 +96,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/hotels/$hotelId': typeof HotelsHotelIdRoute
   '/hotels/': typeof HotelsIndexRoute
   '/rooms/': typeof RoomsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/hotels' | '/rooms'
+  fullPaths: '/' | '/hotels/$hotelId' | '/hotels' | '/rooms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/hotels' | '/rooms'
-  id: '__root__' | '/' | '/hotels/' | '/rooms/'
+  to: '/' | '/hotels/$hotelId' | '/hotels' | '/rooms'
+  id: '__root__' | '/' | '/hotels/$hotelId' | '/hotels/' | '/rooms/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HotelsHotelIdRoute: typeof HotelsHotelIdRoute
   HotelsIndexRoute: typeof HotelsIndexRoute
   RoomsIndexRoute: typeof RoomsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HotelsHotelIdRoute: HotelsHotelIdRoute,
   HotelsIndexRoute: HotelsIndexRoute,
   RoomsIndexRoute: RoomsIndexRoute,
 }
@@ -116,12 +135,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/hotels/$hotelId",
         "/hotels/",
         "/rooms/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/hotels/$hotelId": {
+      "filePath": "hotels/$hotelId.tsx"
     },
     "/hotels/": {
       "filePath": "hotels/index.tsx"

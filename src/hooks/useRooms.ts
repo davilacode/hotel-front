@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from 'sonner';
-import { createRoom, getRoom, getRooms, updateRoom } from "@/api/hotels";
+import { createRoom, deleteRoom, getRoom, getRooms, updateRoom } from "@/api/hotels";
 
 import { create } from 'zustand';
 
@@ -22,6 +22,15 @@ export const useAddRooms = create<RoomState>((set) => ({
 
 // Abrir formulario editar habitaciones
 export const useEditRooms = create<RoomState>((set) => ({
+  id: undefined,
+  hotelId: 0,
+  isOpen: false,
+  onOpen: (hotelId: number, id?: number) => set({ isOpen: true, hotelId, id }),
+  onClose: () => set({ isOpen: false, id: undefined, hotelId: 0 }),
+}));
+
+// Abrir formulario editar habitaciones
+export const useDeleteRooms = create<RoomState>((set) => ({
   id: undefined,
   hotelId: 0,
   isOpen: false,
@@ -74,7 +83,8 @@ export const useRooms = (hotelId: number, id?: number) => {
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Error al crear el Room');
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al crear acomodación: '+errorMessage);
     },    
   });
 
@@ -92,7 +102,28 @@ export const useRooms = (hotelId: number, id?: number) => {
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Error al actualizar el Room');
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al actualizar acomodación: '+errorMessage);
+    }
+  });
+
+
+  const deleteRoomMutation = useMutation({
+    mutationFn: async () => {
+      if (!hotelId) throw new Error("Hotel ID is required");
+      if (!id) throw new Error("Room ID is required");
+      const { data } = await deleteRoom(hotelId, id);
+      return data;
+    },
+    onSuccess: () => {
+      toast.success('Acomodación eliminada correctamente');
+      queryClient.invalidateQueries({ queryKey: ['hotels'] });
+      queryClient.invalidateQueries({ queryKey: ['rooms', { hotelId }] });
+    },
+    onError: (error) => {
+      console.error(error);
+      const errorMessage = (error as any)?.response?.data?.message || 'Error desconocido';
+      toast.error('Error al eliminar acomodación: ' + errorMessage);
     }
   });
 
@@ -101,5 +132,6 @@ export const useRooms = (hotelId: number, id?: number) => {
     getRoomQuery,
     createRoomMutation,
     updateRoomMutation,
+    deleteRoomMutation
   };
 }

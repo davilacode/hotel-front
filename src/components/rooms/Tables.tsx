@@ -1,6 +1,6 @@
 import { Table as UITable, TableHeader, TableBody, TableCaption, TableCell, TableHead, TableRow } from '@/components/ui/table';
 import { Button } from '../ui/button';
-import { useEditRooms } from '@/hooks/useRooms';
+import { useDeleteRooms, useEditRooms } from '@/hooks/useRooms';
 
 type Props = {
   data: {
@@ -14,7 +14,8 @@ type Props = {
 
 export default function Table({ data }: Props) {
 
-  const { onOpen } = useEditRooms();
+  const { onOpen: onOpenEdit } = useEditRooms();
+  const { onOpen: onOpenDelete } = useDeleteRooms();
   
   return (
     <UITable className="w-full mx-auto">
@@ -34,10 +35,10 @@ export default function Table({ data }: Props) {
             <TableCell>{room.accommodation}</TableCell>
             <TableCell>{room.quantity}</TableCell>
             <TableCell className="text-right space-x-2">
-              <Button variant="secondary" onClick={() => onOpen(room.hotel_id, room.id)}>
+              <Button variant="secondary" onClick={() => onOpenEdit(room.hotel_id, room.id)}>
                 Editar
               </Button>
-              <Button variant="destructive" onClick={() => console.log('Delete', room.id)}>
+              <Button variant="destructive" onClick={() => onOpenDelete(room.hotel_id, room.id)}>
                 Eliminar
               </Button>
             </TableCell>

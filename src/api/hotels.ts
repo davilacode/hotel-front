@@ -25,6 +25,11 @@ export const updateHotel = async (id: number, data: object) => await http({
   data,
 });
 
+export const deleteHotel = async (id: number) => await http({
+  url: `/hotels/${id}`,
+  method: 'DELETE',
+});
+
 // Habitaciones
 export const getRooms = async (hotelId: number) => {
   return await http({
@@ -48,4 +53,9 @@ export const updateRoom = async (hotelId: number, id: number, data: object) => a
   url: `/hotels/${hotelId}/rooms/${id}`,
   method: 'PUT',
   data,
+});
+
+export const deleteRoom = async (hotelId: number, id: number) => await http({
+  url: `/hotels/${hotelId}/rooms/${id}`,
+  method: 'DELETE',
 });
