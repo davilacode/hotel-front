@@ -17,7 +17,7 @@ export default function Header() {
                 to="/hotels"
 
                 activeProps={{ className: 'text-primary bg-muted' }}
-                className='flex h-7 text-2xl items-center justify-center rounded-full px-4 text-center font-medium text-muted-foreground transition-colors hover:text-primary'
+                className='flex h-7 text-lg items-center justify-center rounded-full px-4 text-center font-medium text-muted-foreground transition-colors hover:text-primary'
                 >
                 Hoteles
               </Link>
@@ -26,7 +26,7 @@ export default function Header() {
               <Link
                 to="/rooms"
                 activeProps={{ className: 'text-primary bg-muted' }}
-                className='flex h-7 text-2xl items-center justify-center rounded-full px-4 text-center font-medium text-muted-foreground transition-colors hover:text-primary'
+                className='flex h-7 text-lg items-center justify-center rounded-full px-4 text-center font-medium text-muted-foreground transition-colors hover:text-primary'
               >
                 Habitaciones
               </Link>
