@@ -21,7 +21,16 @@ const router = createRouter({
 })
 
 // Create a QueryClient instance
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {

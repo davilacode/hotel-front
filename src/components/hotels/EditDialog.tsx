@@ -33,7 +33,7 @@ export default function EditHotelDialog() {
     address: "",
     nit: "",
     city: "",
-    total_rooms: 0,
+    total_rooms: 1,
   };
 
   const onSubmit = (values: FormValues) => {
@@ -55,6 +55,7 @@ export default function EditHotelDialog() {
           <div>Cargando...</div>  
         ) : (
           <HotelForm
+            id={id}
             onSubmit={onSubmit}
             disabled={mutation.isPending}
             defaultValues={defaultValues}

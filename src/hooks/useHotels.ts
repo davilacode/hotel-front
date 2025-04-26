@@ -35,7 +35,6 @@ export const useHotels = (id?: number) => {
       const { data } = await getHotels();
       return data;
     },
-    enabled: true
   });
 
   // Obtener un Hotel

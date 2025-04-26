@@ -57,6 +57,7 @@ export default function EditRoomDialog() {
           <div>Cargando...</div>  
         ) : (
           <RoomsForm
+            id={id}
             onSubmit={onSubmit}
             disabled={mutation.isPending}
             defaultValues={defaultValues}

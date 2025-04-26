@@ -17,7 +17,7 @@ import {
 type FormValues = z.input<typeof hotelSchema>;
 
 type Props = {
-  id?: string;
+  id?: number;
   defaultValues?: FormValues;
   onSubmit: (values: FormValues) => void;
   disabled?: boolean;
@@ -36,8 +36,6 @@ export const HotelForm = ({
   const handleSubmit = ((values: FormValues) => {
     onSubmit(values);
   });
-
-  console.log(form.formState.errors);
 
   return (
     <Form {...form}>
@@ -140,7 +138,7 @@ export const HotelForm = ({
           )}
         />
         <Button className="w-full" disabled={disabled}>
-          {id ? "Guardar" : "Crear"}
+          {id ? "Editar" : "Crear"}
         </Button>
       </form>
     </Form>

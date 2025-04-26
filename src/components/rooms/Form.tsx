@@ -28,7 +28,7 @@ type Accommodation = "single" | "double" | "triple" | "quadruple";
 type FormValues = z.input<typeof roomsSchema>;
 
 type Props = {
-  id?: string;
+  id?: number;
   defaultValues?: FormValues;
   onSubmit: (values: FormValues) => void;
   disabled?: boolean;
@@ -163,7 +163,7 @@ export const RoomsForm = ({
           )}
         />
         <Button className="w-full" disabled={disabled}>
-          {id ? "Guardar" : "Crear"}
+          {id ? "Editar" : "Crear"}
         </Button>
       </form>
     </Form>

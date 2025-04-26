@@ -50,7 +50,7 @@ export default function AddHotelDialog() {
             address: "",
             nit: "",
             city: "",
-            total_rooms: 0,
+            total_rooms: 1,
           }}
         />
       </DialogContent>

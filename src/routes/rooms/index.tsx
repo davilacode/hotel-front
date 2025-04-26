@@ -57,7 +57,7 @@ function RouteComponent() {
             value={String(hotelId)}
             disabled={isHotelLoading}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[250px]">
               <SelectValue placeholder={isHotelLoading ? "Cargando..." : "Hoteles"} />
             </SelectTrigger>
             <SelectContent>
