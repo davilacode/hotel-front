@@ -33,7 +33,7 @@ export default function AddHotelDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="default">
+        <Button className="w-full sm:w-auto" variant="default">
           <PlusCircle />
           <span>Agregar Hotel</span>
         </Button>

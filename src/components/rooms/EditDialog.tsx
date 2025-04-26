@@ -45,7 +45,7 @@ export default function EditRoomDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="text-left">
           <DialogTitle>Editar habitaciones de hotel</DialogTitle>
           {hotelData && <>
             <p className="font-bold">{hotelData.hotel.name}</p>

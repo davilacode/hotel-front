@@ -2,6 +2,7 @@ import { Table as UITable, TableHeader, TableBody, TableCaption, TableCell, Tabl
 import { Button } from '../ui/button';
 import { useDeleteHotel, useEditHotel } from '@/hooks/useHotels';
 import { Link } from '@tanstack/react-router';
+import { Edit, Trash, View } from 'lucide-react';
 
 
 type Props = {
@@ -48,12 +49,17 @@ export default function Table({ data }: Props) {
                 <Link 
                   to="/hotels/$hotelId"
                   params={{ hotelId: hotel.id }}
-                >Ver</Link>
+                >
+                  <View />
+                  Ver
+                </Link>
               </Button>
               <Button variant="secondary" onClick={() => onOpenEdit(Number(hotel.id))}>
+                <Edit />
                 Editar
               </Button>
               <Button variant="destructive" onClick={() => onOpenDelete(Number(hotel.id))}>
+                <Trash />
                 Eliminar
               </Button>
             </TableCell>

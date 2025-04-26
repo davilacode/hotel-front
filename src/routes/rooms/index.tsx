@@ -45,12 +45,12 @@ function RouteComponent() {
 
   return (
     <div className='flex flex-col p-4 w-screen max-w-[1400px] mx-auto'>
-      <div className="flex flex-row border-b-2 mb-4 items-center justify-between gap-4 bg-white p-4 shadow-">
-        <div>
+      <div className="flex flex-col md:flex-row border-b-2 mb-4 items-center justify-between gap-4 bg-white py-4">
+        <div className="w-full md:w-auto">
           <h1 className="font-bold text-2xl">Acomodaciones</h1>
           <p>Módulo para agregar acomodaciones</p>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="w-full md:w-auto flex flex-col md:flex-row gap-4">
           <Select onValueChange={
             (value) => {
               setHotelId(Number(value))
@@ -58,7 +58,7 @@ function RouteComponent() {
             value={String(hotelId)}
             disabled={isHotelLoading}
           >
-            <SelectTrigger className="w-[250px]">
+            <SelectTrigger className="w-full md:w-[250px]">
               <SelectValue placeholder={isHotelLoading ? "Cargando..." : "Hoteles"} />
             </SelectTrigger>
             <SelectContent>
@@ -69,7 +69,7 @@ function RouteComponent() {
               ))}
             </SelectContent>
           </Select>
-          <Button variant="default" onClick={() => hotelId !== null && onOpen(hotelId) } >
+          <Button variant="default" className="w-full md:w-auto" onClick={() => hotelId !== null && onOpen(hotelId) } >
             <PlusCircle />
             <span>Registrar habitaciones</span>
           </Button>

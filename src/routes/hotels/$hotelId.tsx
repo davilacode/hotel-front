@@ -6,6 +6,7 @@ import EditHotelDialog from '@/components/hotels/EditDialog'
 import EditRoomDialog from '@/components/rooms/EditDialog'
 import { Button } from '@/components/ui/button'
 import AddRoomDialog from '@/components/rooms/AddDialog'
+import { ArrowBigLeft, ArrowLeft, Edit, PlusCircle } from 'lucide-react'
 
 export const Route = createFileRoute('/hotels/$hotelId')({
   component: RouteComponent,
@@ -30,22 +31,24 @@ function RouteComponent() {
         <div>Cargando...</div>
         ) : (
         <>
-          <div className="flex flex-row border-b-2 mb-4 items-center justify-between gap-4 bg-white p-4 shadow-">
-            <div>
+          <div className="flex flex-col sm:flex-row border-b-2 mb-4 items-center justify-between gap-4 bg-white py-4">
+            <div className=" w-full md:w-auto">
               <h1 className="font-bold text-2xl">{hotelData?.hotel?.name || ''}</h1>
             </div>
-            <div className='flex items-center gap-4'>
-              <Button variant="secondary">
+            <div className='flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto'>
+              <Button className="w-full sm:w-auto" variant="secondary" asChild>
                 <Link to="/hotels">
+                  <ArrowLeft />
                   Volver
                 </Link>
               </Button>
-              <Button onClick={() => { onOpen(Number(hotelId)) } }>
+              <Button className="w-full sm:w-auto" onClick={() => { onOpen(Number(hotelId)) } }>
+                <Edit />
                 Editar
               </Button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4 mb-4 bg-white shadow-lg rounded-md p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 bg-white shadow-lg rounded-md p-4">
             <div>
               <h2 className="font-bold">Dirección:</h2>
               <p>{hotelData?.hotel?.address || ''}</p>
@@ -67,7 +70,8 @@ function RouteComponent() {
       )}
 
       <div className="flex flex-row items-center justify-end mb-4">
-        <Button onClick={() => { onOpenRoom(Number(hotelId)) } }>
+        <Button className="w-full sm:w-auto" onClick={() => { onOpenRoom(Number(hotelId)) } }>
+          <PlusCircle />
           Agregar acomodación
         </Button>
       </div>

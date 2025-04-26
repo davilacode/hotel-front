@@ -1,6 +1,7 @@
 import { Table as UITable, TableHeader, TableBody, TableCaption, TableCell, TableHead, TableRow } from '@/components/ui/table';
 import { Button } from '../ui/button';
 import { useDeleteRooms, useEditRooms } from '@/hooks/useRooms';
+import { Trash, Edit } from 'lucide-react';
 
 type Props = {
   data: {
@@ -36,9 +37,11 @@ export default function Table({ data }: Props) {
             <TableCell>{room.quantity}</TableCell>
             <TableCell className="text-right space-x-2">
               <Button variant="secondary" onClick={() => onOpenEdit(room.hotel_id, room.id)}>
+                <Edit />
                 Editar
               </Button>
               <Button variant="destructive" onClick={() => onOpenDelete(room.hotel_id, room.id)}>
+                <Trash />
                 Eliminar
               </Button>
             </TableCell>
